@@ -1,17 +1,24 @@
 {
-  "name": "Name of Extension",
-  "version": "1.0",
-  "manifest_version": 2,
-  "description": "説明",
+  "name": "classroom-myUI",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "description": "Google classroomのUIを良くする(のかもしれない)拡張機能です",
   "icons": {
-    "16": "16px.png"
+    "128": "classroom-myUI_128.png"
   },
   "content_scripts": [
     {
-      "matches": ["http://対象のURL/*"],
+      "matches": ["https://classroom.google.com/*"],
       "js": ["script.js"],
+      "css": ["style.css"],
       "run_at": "document_end",
       "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["style.css"],
+      "matches": ["https://classroom.google.com/*"]
     }
   ]
 }
