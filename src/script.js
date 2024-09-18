@@ -24,11 +24,23 @@ function addClass() {
 }
 
 const observer = new MutationObserver(records => {
+  if (parentElement.length == 0) return;
   addClass();
 });
 
+observer.observe(document.getElementsByTagName("title")[0], {
+  childList: true,
+});
+
+let attempt = 0;
 let intervalId = 0;
 intervalId = setInterval(() => {
+  if (attempt > 20) {
+    console.warn("classroom-myUI: 要素が元々無いページか、構造が変わったか、読み込みが遅いかもしれません。");
+    clearInterval(intervalId);
+    return;
+  }
+  attempt++;
   if (parentElement.length == 0) return;
 
   clearInterval(intervalId);
