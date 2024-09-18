@@ -1,0 +1,17 @@
+{
+  "name": "Name of Extension",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "説明",
+  "icons": {
+    "16": "16px.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://対象のURL/*"],
+      "js": ["script.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
