@@ -7,7 +7,9 @@ link.rel = "stylesheet";
 link.href = `${chrome.runtime.getURL("style.css")}`;
 document.head.appendChild(link);
 
+// 配布された課題のheightを調整できるぐらいの親要素
 const parentElement = document.getElementsByClassName("JZicYb");
+// 課題の説明の要素
 const textElements = document.getElementsByClassName("asQXV");
 
 function addClass() {
@@ -32,6 +34,7 @@ intervalId = setInterval(() => {
   clearInterval(intervalId);
   addClass();
 
+  // 課題のリスト
   const workList = parentElement[0].parentElement?.parentElement?.parentElement;
   if (workList) {
     observer.observe(workList, { childList: true });
