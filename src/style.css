@@ -1,0 +1,11 @@
+.no-overflow-hidden {
+  overflow-wrap: break-word;
+  white-space: normal;
+  word-break: auto-phrase;
+}
+
+.set-height {
+  height: unset;
+  min-height: 3.5rem;
+  padding: 0.5rem 0;
+}
