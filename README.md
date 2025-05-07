@@ -1,2 +1,3 @@
 # classroom-myUI
-GoogleclassroomのUIを良くする(のかもしれない)拡張機能です
+
+Google classroomのUIを良くする（のかもしれない）拡張機能です
