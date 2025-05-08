@@ -1,5 +1,7 @@
 # classroom-myUI
 
+<img src="docs/classroom-myUI-PR.png" alt="Classroom-myUIのスクリーンショット" width="500px">
+
 Google classroomのUIを良くする（のかもしれない）拡張機能です
 
 ## インストール方法
