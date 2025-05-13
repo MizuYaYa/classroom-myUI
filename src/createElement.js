@@ -1,5 +1,4 @@
 // @ts-check
-"use strict";
 
 /**
  * @description 課題の下部に表示する要素を作成する

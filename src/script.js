@@ -1,5 +1,4 @@
 //@ts-check
-"use strict";
 
 import { createInfoBarElementInStreamTab, createInfoElementInClassTab } from "./createElement.js";
 
