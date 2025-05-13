@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://classroom.google.com/*"],
-      "js": ["script.js"],
+      "js": ["loader.js"],
       "css": ["style.css"],
       "run_at": "document_end",
       "all_frames": true
@@ -17,7 +17,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["style.css"],
+      "resources": ["style.css", "img/*", "createElement.js", "script.js"],
       "matches": ["https://classroom.google.com/*"]
     }
   ]
