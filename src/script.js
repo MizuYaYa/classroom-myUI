@@ -52,6 +52,7 @@ function addClassInStreamTab() {
     /** @type {HTMLSpanElement | null} */
     const description = element.querySelector("span.asQXV");
     if (!description) throw new Error("課題説明文の要素が見つかりませんでした。");
+    description.classList.add("no-overflow-hidden");
 
     // 取得したdescriptionをparseClassDescriptionに渡す
     const parsedDescription = parseClassDescription(description.innerText);
@@ -62,11 +63,6 @@ function addClassInStreamTab() {
     const infoBarElement = createInfoBarElementInStreamTab(parsedDescription);
 
     element.parentElement?.appendChild(infoBarElement);
-  }
-
-  for (const element of textElements) {
-    if (!(element.tagName === "SPAN" || element.parentElement?.className === "QRiHXd")) continue;
-    element.classList.add("no-overflow-hidden");
   }
 }
 
@@ -79,6 +75,7 @@ function addClassInClassTab() {
     /** @type {HTMLDivElement | null} */
     const description = element.querySelector("div.JvYRu");
     if (!description) throw new Error("課題説明文の要素が見つかりませんでした。");
+    description.classList.add("no-overflow-hidden");
 
     const parsedDescription = parseClassDescription(description.innerText);
     if (!parsedDescription) throw new Error("課題説明文が正しく解析できませんでした。");
@@ -92,10 +89,6 @@ function addClassInClassTab() {
     infoSpaceElement.classList.add("flex-column");
 
     infoSpaceElement.appendChild(infoElement);
-  }
-
-  for (const element of textClassElements) {
-    element.classList.add("no-overflow-hidden");
   }
 }
 
