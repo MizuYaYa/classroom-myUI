@@ -12,6 +12,7 @@ export function createInfoBarElementInStreamTab(infoData) {
     const serviceNameElement = document.createElement("img");
     // @ts-ignore
     serviceNameElement.src = chrome.runtime.getURL("img/manufacturing.svg");
+    serviceNameElement.alt = `${infoData.serviceName} を使用して投稿`
 
     const serviceNameTooltipContainerElement = document.createElement("div");
     serviceNameTooltipContainerElement.classList.add("tooltip");
