@@ -1,0 +1,50 @@
+name: upload extension
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: git setup
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: update manifest.json
+        run: |
+          VERSION=${{ github.ref_name }}
+          echo "version: $VERSION"
+          sed -i -e "s/\"version\": \".*\"/\"version\": \"${VERSION:1}\"/" src/manifest.json
+          git add .
+          git commit -m "🔖 Release $VERSION"
+
+      - name: zip
+        run: |
+          zip -r "classroom-myUI_${{ github.ref_name }}.zip" src/
+
+      - name: Upload to Chrome Web Store
+        uses: MobileFirstLLC/cws-publish@569e87bc9a54ad7712ba6dc154a110d88af63b85 #2.1.1
+        with:
+          action: "upload"
+          client_id: ${{ secrets.CLIENT }}
+          client_secret: ${{ secrets.SECRET }}
+          refresh_token: ${{ secrets.TOKEN }}
+          extension_id: "fldjpemfcmojflhfcgldcbmpeodifbcf"
+          zip_file: "classroom-myUI_${{ github.ref_name }}.zip"
+
+      - name: create GitHub release
+        uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 #2.2.2
+        with:
+          generate_release_notes: true
+          files: classroom-myUI_${{ github.ref_name }}.zip
