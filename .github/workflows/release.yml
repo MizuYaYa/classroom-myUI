@@ -17,11 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: git setup
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: update manifest.json
         run: |
           VERSION=${{ github.ref_name }}
@@ -42,6 +37,16 @@ jobs:
           extension_id: "fldjpemfcmojflhfcgldcbmpeodifbcf"
           zip_file: "classroom-myUI_${{ github.ref_name }}.zip"
 
+      - name: create GitHub release
+        uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 #2.2.2
+        with:
+          generate_release_notes: true
+          files: classroom-myUI_${{ github.ref_name }}.zip
+
+      - name: delete zip
+        run: |
+          rm classroom-myUI_${{ github.ref_name }}.zip
+
       - name: create pull request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
         with:
@@ -51,9 +56,3 @@ jobs:
           base: main
           branch: release/${{ github.ref_name }}
           labels: release
-
-      - name: create GitHub release
-        uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 #2.2.2
-        with:
-          generate_release_notes: true
-          files: classroom-myUI_${{ github.ref_name }}.zip
