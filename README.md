@@ -6,11 +6,11 @@ Google classroomのUIを良くする（のかもしれない）拡張機能で�
 
 ## インストール方法
 
-### 1. Chrome Web Storeからインストールする方法(メイン)
+### ・ Chrome Web Storeからインストールする方法(メイン)
 
 [classroom-myUIの配布ページ](https://chromewebstore.google.com/detail/classroom-myui/fldjpemfcmojflhfcgldcbmpeodifbcf)にアクセスし、「Chromeに追加」ボタンを押す。
 
-### 2. Chrome Web Storeを使用せずにインストールする方法
+### ・ Chrome Web Storeを使用せずにインストールする方法
 
 ターミナルに下記のコマンドをコピーし入力する
 
@@ -18,7 +18,7 @@ Google classroomのUIを良くする（のかもしれない）拡張機能で�
 curl -s https://raw.githubusercontent.com/MizuYaYa/classroom-myUI/refs/heads/main/install.sh | bash
 ```
 
-## アンインストール方法
+アンインストールする場合は
 
 ターミナルに下記のコマンドをコピーし入力する
 
