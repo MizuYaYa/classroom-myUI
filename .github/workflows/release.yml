@@ -28,16 +28,6 @@ jobs:
           echo "version: $VERSION"
           sed -i -e "s/\"version\": \".*\"/\"version\": \"${VERSION:1}\"/" src/manifest.json
 
-      - name: create pull request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
-        with:
-          commit-message: "🔖 Release ${{ github.ref_name }}"
-          title: "🔖 Release ${{ github.ref_name }}"
-          body: "🔖 Release ${{ github.ref_name }}"
-          base: main
-          branch: release/${{ github.ref_name }}
-          labels: release
-
       - name: zip
         run: |
           zip -r "classroom-myUI_${{ github.ref_name }}.zip" src/
@@ -51,6 +41,16 @@ jobs:
           refresh_token: ${{ secrets.TOKEN }}
           extension_id: "fldjpemfcmojflhfcgldcbmpeodifbcf"
           zip_file: "classroom-myUI_${{ github.ref_name }}.zip"
+
+      - name: create pull request
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          commit-message: "🔖 Release ${{ github.ref_name }}"
+          title: "🔖 Release ${{ github.ref_name }}"
+          body: "🔖 Release ${{ github.ref_name }}"
+          base: main
+          branch: release/${{ github.ref_name }}
+          labels: release
 
       - name: create GitHub release
         uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 #2.2.2
