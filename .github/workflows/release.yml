@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release:
@@ -26,9 +27,16 @@ jobs:
           VERSION=${{ github.ref_name }}
           echo "version: $VERSION"
           sed -i -e "s/\"version\": \".*\"/\"version\": \"${VERSION:1}\"/" src/manifest.json
-          git add .
-          git commit -m "🔖 Release $VERSION"
-          git push origin main
+
+      - name: create pull request
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          commit-message: "🔖 Release ${{ github.ref_name }}"
+          title: "🔖 Release ${{ github.ref_name }}"
+          body: "🔖 Release ${{ github.ref_name }}"
+          base: main
+          branch: release/${{ github.ref_name }}
+          labels: release
 
       - name: zip
         run: |
