@@ -28,6 +28,7 @@ jobs:
           sed -i -e "s/\"version\": \".*\"/\"version\": \"${VERSION:1}\"/" src/manifest.json
           git add .
           git commit -m "🔖 Release $VERSION"
+          git push origin main
 
       - name: zip
         run: |
