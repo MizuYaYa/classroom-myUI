@@ -28,14 +28,14 @@ jobs:
           zip -r "classroom-myUI_${{ github.ref_name }}.zip" src/
 
       - name: Upload to Chrome Web Store
-        uses: MobileFirstLLC/cws-publish@569e87bc9a54ad7712ba6dc154a110d88af63b85 #2.1.1
+        uses: mnao305/chrome-extension-upload@f549d5d654694a7722d6abfa64c97409ad5e64c1 # 7.0.0
         with:
-          action: "upload"
-          client_id: ${{ secrets.CLIENT }}
-          client_secret: ${{ secrets.SECRET }}
-          refresh_token: ${{ secrets.TOKEN }}
-          extension_id: "fldjpemfcmojflhfcgldcbmpeodifbcf"
-          zip_file: "classroom-myUI_${{ github.ref_name }}.zip"
+          client-id: ${{ secrets.CLIENT }}
+          client-secret: ${{ secrets.SECRET }}
+          refresh-token: ${{ secrets.TOKEN }}
+          extension-id: "fldjpemfcmojflhfcgldcbmpeodifbcf"
+          file-path: "classroom-myUI_${{ github.ref_name }}.zip"
+          publisher-id: ${{ secrets.PUBLISHER }}
 
       - name: create GitHub release
         uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 #2.2.2
